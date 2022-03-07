@@ -4,6 +4,7 @@ import pandas as pd
 
 DATA_FILE = "data.csv" 
 ID_INDEX = 1			# student id
+PW_INDEX = 2			# password id
 GRADE_INDEX_START = 3 	# lab1
 GRADE_INDEX_END = 12  	# exam4
 #	'''
@@ -26,6 +27,7 @@ COL_NAMES = {
 class csv_handler:
 	def __init__(self):
 		self.data = pd.read_csv(DATA_FILE, header=0)
+		print(self.get_ids_and_passwords())
 
 	def get_category_mean(self, category):
 		if category in COL_NAMES:
@@ -42,7 +44,16 @@ class csv_handler:
 				grades = row[GRADE_INDEX_START:GRADE_INDEX_END]
 				# last line is garbage (so remove)
 
+	def get_ids_and_passwords(self):
+		l = []
+		for index, row in self.data.iterrows():
+			id = row[ID_INDEX]
+			pw = row[PW_INDEX]
+			l.append((id, pw))
+		return l
 
 
 def remove_last_line_from_string(s):
-    return s[:s.rfind('\n')]   
+    return s[:s.rfind('\n')]
+
+csv_handler()
