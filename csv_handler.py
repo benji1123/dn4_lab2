@@ -30,12 +30,12 @@ class csv_handler:
 
 	def get_category_mean(self, category):
 		if category in COL_NAMES:
-			return float(self.data[COL_NAMES[category]].mean())
+			return str(self.data[COL_NAMES[category]].mean())
 
 	def get_grade(self, stud_num, category):
 		for index, row in self.data.iterrows():
 			if (str(row[ID_INDEX]) == stud_num):
-				return float(row[COL_NAMES[category]])
+				return str(row[COL_NAMES[category]])
 
 	def get_all_grades(self, stud_num):
 		for index, row in self.data.iterrows():
