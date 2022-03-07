@@ -137,56 +137,44 @@ class Server:
                 if recvd_str == GET_MIDTERM_AVG_CMD:
                     send_str = c.get_category_mean("M")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_LAB_1_AVG_CMD:
                     send_str = c.get_category_mean("L1")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_LAB_2_AVG_CMD:
                     send_str = c.get_category_mean("L2")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
                 
                 elif recvd_str == GET_LAB_3_AVG_CMD:
                     send_str = c.get_category_mean("L3")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_LAB_4_AVG_CMD:
                     send_str = c.get_category_mean("L4")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_EXAM_1_AVG_CMD:
                     send_str = c.get_category_mean("E1")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_EXAM_2_AVG_CMD:
                     send_str = c.get_category_mean("E2")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_EXAM_3_AVG_CMD:
                     send_str = c.get_category_mean("E3")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
                 elif recvd_str == GET_EXAM_4_AVG_CMD:
                     send_str = c.get_category_mean("E4")
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
-                    break
 
-                elif recvd_str == GET_GRADES_CMD:
+                #elif recvd_str == GET_GRADES_CMD:
                     # need student num
                     # send_str = c.get_all_grades()
-                    break
 
-                else:
-                    #PASSWORD STUFF
-                    break
+             
 
             except KeyboardInterrupt:
                 print()
