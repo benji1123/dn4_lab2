@@ -47,8 +47,8 @@ class csv_handler:
 	def get_ids_and_passwords(self):
 		l = []
 		for index, row in self.data.iterrows():
-			id = row[ID_INDEX]
-			pw = row[PW_INDEX]
+			id = str(row[ID_INDEX])
+			pw = str(row[PW_INDEX])
 			l.append((id, pw))
 		return l
 
