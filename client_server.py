@@ -20,11 +20,21 @@ e.g., then do EchoClientserver.Server()
 import socket
 import argparse
 import sys
-
+from csv_handler import * 
 
 HOSTNAME = "0.0.0.0"      # All interfaces.
 PORT = 5000
 SOCKET_ADDRESS = (HOSTNAME, PORT)
+
+GET_LAB_1_AVG_CMD = "GL1A"
+GET_LAB_2_AVG_CMD = "GL2A"
+GET_LAB_3_AVG_CMD = "GL3A"
+GET_LAB_4_AVG_CMD = "GL4A"
+GET_MIDTERM_AVG_CMD = "GMA"
+GET_EXAM_1_AVG_CMD = "GE1A"
+GET_EXAM_2_AVG_CMD = "GE2A"
+GET_EXAM_3_AVG_CMD = "GE3A"
+GET_EXAM_4_AVG_CMD = "GE4A"
 
 ########################################################################
 # Echo Server class
@@ -101,6 +111,8 @@ class Server:
         # Output the socket address.
         print(client)
 
+        c = csv_handler()
+
         while True:
             try:
                 # Receive bytes over the TCP connection. This will block
@@ -121,11 +133,60 @@ class Server:
                 # them.
                 recvd_str = recvd_bytes.decode(Server.MSG_ENCODING)
                 print("Received: ", recvd_str)
+
+                if recvd_str == GET_MIDTERM_AVG_CMD:
+                    send_str = c.get_category_mean("M")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_LAB_1_AVG_CMD:
+                    send_str = c.get_category_mean("L1")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_LAB_2_AVG_CMD:
+                    send_str = c.get_category_mean("L2")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
                 
-                # Send the received bytes back to the client. We are
-                # sending back the raw data.
-                connection.sendall(recvd_bytes)
-                print("Sent: ", recvd_str)
+                elif recvd_str == GET_LAB_3_AVG_CMD:
+                    send_str = c.get_category_mean("L3")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_LAB_4_AVG_CMD:
+                    send_str = c.get_category_mean("L4")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_EXAM_1_AVG_CMD:
+                    send_str = c.get_category_mean("E1")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_EXAM_2_AVG_CMD:
+                    send_str = c.get_category_mean("E2")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_EXAM_3_AVG_CMD:
+                    send_str = c.get_category_mean("E3")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_EXAM_4_AVG_CMD:
+                    send_str = c.get_category_mean("E4")
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+                    break
+
+                elif recvd_str == GET_GRADES_CMD:
+                    # need student num
+                    # send_str = c.get_all_grades()
+                    break
+
+                else:
+                    #PASSWORD STUFF
+                    break
 
             except KeyboardInterrupt:
                 print()
@@ -191,7 +252,7 @@ class Client:
         while True:
             try:
                 self.get_console_input()
-                self.connection_send()
+                self.connection_sendall()
                 self.connection_receive()
             except (KeyboardInterrupt, EOFError):
                 print()
@@ -201,7 +262,7 @@ class Client:
                 self.socket.close()
                 sys.exit(1)
                 
-    def connection_send(self):
+    def connection_sendall(self):
         try:
             # Send string objects over the connection. The string must
             # be encoded into bytes objects first.

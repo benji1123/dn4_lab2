@@ -6,11 +6,11 @@ DATA_FILE = "data.csv"
 ID_INDEX = 1			# student id
 GRADE_INDEX_START = 3 	# lab1
 GRADE_INDEX_END = 12  	# exam4
+#	'''
+#	 k: category-names used in client msg (i.e. GL1A, GE4G)
+#	 v: category-names used in csv file
+#	'''`
 COL_NAMES = {
-	'''
-	 k: category-names used in client msg (i.e. GL1A, GE4G)
-	 v: category-names used in csv file
-	'''
 	"L1" : "Lab 1", 
 	"L2" : "Lab 2", 
 	"L3" : "Lab 3", 
@@ -41,7 +41,7 @@ class csv_handler:
 			if (str(row[ID_INDEX]) == stud_num):
 				grades = row[GRADE_INDEX_START:GRADE_INDEX_END]
 				# last line is garbage (so remove)
-				return remove_last_line_from_string(str(grades))
+
 
 
 def remove_last_line_from_string(s):
