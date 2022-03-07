@@ -20,6 +20,9 @@ e.g., then do EchoClientserver.Server()
 import socket
 import argparse
 import sys
+import getpass
+import hashlib
+from quopri import decodestring
 
 
 HOSTNAME = "0.0.0.0"      # All interfaces.
@@ -230,6 +233,18 @@ class Client:
         except Exception as msg:
             print(msg)
             sys.exit(1)
+
+########################################################################
+# Authentication
+########################################################################
+
+def create_hash(id, pw):
+    id = id.encode(encoding = 'UTF-8') #encode id using UTF-8
+    pw = pw.encode(encoding = 'UTF-8') #encode password using UTF-8
+    hash = hashlib.sha256() #initialize SHA-256 hash object
+    hash.update(id) #update hash object with the bytes-like object
+    hash.update(pw) #repeated calls are equivalent to single call with concatenation of all arguments
+    return hash.digest() #return the digest of the data passed to the update()
 
 ########################################################################
 # Process command line arguments if this module is run directly.
