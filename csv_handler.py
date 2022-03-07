@@ -27,7 +27,6 @@ ID_INDEX = 1
 class csv_handler:
 	def __init__(self):
 		self.data = pd.read_csv(DATA_FILE, header=0)
-		print(self.get_all_grades("1891352"))
 
 	def get_category_mean(self, category):
 		if category in COL_NAMES:
