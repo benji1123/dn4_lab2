@@ -41,6 +41,7 @@ class csv_handler:
 		for index, row in self.data.iterrows():
 			if (str(row[ID_INDEX]) == stud_num):
 				grades = row[GRADE_INDEX_START:GRADE_INDEX_END]
+				# last line is garbage (so remove)
 				return remove_last_line_from_string(str(grades))
 
 
