@@ -6,11 +6,12 @@ DATA_FILE = "data.csv"
 ID_INDEX = 1			# student id
 GRADE_INDEX_START = 3 	# lab1
 GRADE_INDEX_END = 12  	# exam4
+
+'''
+k: category-names used in client msg (i.e. GL1A, GE4G)
+v: category-names used in csv file
+'''
 COL_NAMES = {
-	'''
-	 k: category-names used in client msg (i.e. GL1A, GE4G)
-	 v: category-names used in csv file
-	'''
 	"L1" : "Lab 1", 
 	"L2" : "Lab 2", 
 	"L3" : "Lab 3", 
@@ -45,4 +46,15 @@ class csv_handler:
 
 
 def remove_last_line_from_string(s):
-    return s[:s.rfind('\n')]   
+    return s[:s.rfind('\n')]
+
+def test():
+	c = csv_handler()
+	# get L1 mean
+	print(c.get_category_mean("L1"))
+	print("\n")
+	# get L2 grade for student
+	print(c.get_grade("1891352", "L2"))
+	print("\n")
+	# get all grades for a student
+	print(c.get_all_grades("1891352"))
