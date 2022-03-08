@@ -85,8 +85,11 @@ class Server:
         for i in l:
             h = str(create_hash(i[ID_INDEX], i[PW_INDEX]))
             if h == recvd_hash:
+                print("Correct password, record found")
                 send_str = self.csv_handler.get_all_grades(i[ID_INDEX])
                 return send_str
+        print("Password failure")
+        return
 
     def connection_handler(self, client):
         connection, address_port = client
