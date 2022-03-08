@@ -1,5 +1,17 @@
 #!/usr/bin/python3
 
+'''
+Executions steps:
+    1. python client_server.py -r server
+    2. python client_server.py -r client
+
+    Example client commands:
+    * GG
+    * GL1A
+    * GMA
+    * this will return an error
+'''
+
 from shutil import register_archive_format
 import socket
 import argparse
