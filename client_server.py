@@ -145,6 +145,11 @@ class Server:
                 elif len(recvd_str) > 1 and recvd_str[0:2] == GET_GRADES_CMD:
                     send_str = self.handle_get_grade(recvd_str)
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+
+                else:
+                    send_str = "Improper request made"
+                    connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
+
             except KeyboardInterrupt:
                 print()
                 print("Closing client connection ... ")
