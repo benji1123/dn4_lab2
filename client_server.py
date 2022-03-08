@@ -147,7 +147,7 @@ class Server:
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
 
                 else:
-                    send_str = "Improper request made"
+                    send_str = "ERROR: improper request made"
                     connection.sendall(str(send_str).encode(Server.MSG_ENCODING))
 
             except KeyboardInterrupt:
@@ -226,7 +226,7 @@ class Client:
                 print("Closing server connection ... ")
                 self.socket.close()
                 sys.exit(1)
-            print(f"Received: {recvd_bytes.decode(Server.MSG_ENCODING)}\n")
+            print(f"{recvd_bytes.decode(Server.MSG_ENCODING)}\n")
         except Exception as msg:
             print(msg)
             sys.exit(1)
